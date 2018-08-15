@@ -1,6 +1,8 @@
 package com.tftus.seleniumshooter.shooters;
 
+import com.tftus.seleniumshooter.Snapshot;
 import com.tftus.seleniumshooter.shooters.Shooter;
+import com.tftus.seleniumshooter.utils.SnapshotUtil;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -8,7 +10,8 @@ import org.openqa.selenium.WebDriver;
  */
 public class WebDriverShooter extends Shooter {
 
-    public WebDriverShooter(WebDriver driver) {
-        super(driver);
+    @Override
+    protected Snapshot capture(WebDriver driver) {
+        return SnapshotUtil.getSnapshot(driver);
     }
 }

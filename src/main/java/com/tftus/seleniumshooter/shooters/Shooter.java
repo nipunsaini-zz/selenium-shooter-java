@@ -1,5 +1,6 @@
 package com.tftus.seleniumshooter.shooters;
 
+import com.tftus.seleniumshooter.Snapshot;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -7,9 +8,5 @@ import org.openqa.selenium.WebDriver;
  */
 public abstract class Shooter {
 
-    private WebDriver driver;
-
-    public Shooter(WebDriver driver) {
-        this.driver = driver;
-    }
+    protected abstract Snapshot capture(WebDriver driver);
 }
