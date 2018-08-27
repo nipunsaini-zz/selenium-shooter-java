@@ -29,4 +29,29 @@ public class ImageUtil {
         g2.dispose();
         return newImage;
     }
+
+    public static BufferedImage scale(BufferedImage image, int targetWidth, int targetHeight) {
+
+        int imageType = (image.getTransparency() == Transparency.OPAQUE) ? BufferedImage.TYPE_INT_RGB : BufferedImage.TYPE_INT_ARGB;
+
+        int width = image.getWidth();
+        int height = image.getHeight();
+
+        BufferedImage resultImage = image;
+
+        do {
+            width = (width/2 < targetWidth) ? targetWidth : width/2;
+            height = (height/2 < targetHeight) ? targetHeight : height/2;
+
+            BufferedImage temp = new BufferedImage(width, height, imageType);
+            Graphics2D graphics2D = temp.createGraphics();
+            graphics2D.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+            graphics2D.drawImage(resultImage, 0, 0, width, height, null);
+            graphics2D.dispose();
+
+            resultImage = temp;
+        } while (width != targetWidth || height != targetHeight);
+
+        return resultImage;
+    }
 }

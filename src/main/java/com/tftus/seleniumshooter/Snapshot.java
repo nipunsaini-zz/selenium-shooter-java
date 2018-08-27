@@ -1,5 +1,7 @@
 package com.tftus.seleniumshooter;
 
+import com.tftus.seleniumshooter.utils.ImageUtil;
+
 import java.awt.image.BufferedImage;
 
 /**
@@ -19,5 +21,11 @@ public class Snapshot {
 
     public void setSnap(BufferedImage snap) {
         this.snap = snap;
+    }
+
+    public Snapshot scale(int targetWidth, int targetHeight) {
+        BufferedImage result = ImageUtil.scale(this.getSnap(), targetWidth, targetHeight);
+        this.setSnap(result);
+        return this;
     }
 }
